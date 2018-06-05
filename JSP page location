@@ -1,0 +1,16 @@
+Q: Where should the JSP pages be stored? Is it within WEB-INF or outside it?
+ANS: WEB-INF is secured and anything outside it is public.
+
+Everything outside WEB-INF is publicly available no authentication is applied on that, but all resources inside WEB-INF is secured. You can keep static pages outside WEB-INF and dynamic pages like profiles, accounts inside WEB-INF. 
+
+While it's true anything inside WEB-INF will produce a 404 error when accessed directly, this doesn't mean that JSP files within WEB-INF are not accessible at all. They can be included or forwarded to using JSTL and RequestDispatcher. You can also create a servlet-mapping for them. 
+Also, it's not 100% true that everything outside WEB-INF is publicly available without any authentication. That's true by default, but it's possible to specify a security constraint for any content.
+
+{
+Firstly, HTML files are almost always directly addressed -- as they have no active components they do not need a page controller. So HTML file are generally outside the WEB-INF. 
+JSPs, which should never be directly addressed, should be inside WEB-INF so that they must be accessed via their page controllers.
+}
+
+REFERENCES:
+1. https://coderanch.com/t/587615/java/JSP-HTML-pages-outsite-WEB
+2. https://javaranch.com/journal/200603/Journal200603.jsp#a5
